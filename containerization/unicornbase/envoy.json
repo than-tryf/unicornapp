@@ -15,13 +15,8 @@
                   "domains": ["*"],
                   "routes": [
                     {
-                      "prefix": "/goservice",
-                      "cluster": "goservice",
-                      "timeout_ms": 0
-                    },{
-                      "prefix": "/",
-                      "cluster": "google",
-                      "host_rewrite": "www.google.com",
+                      "prefix": "/whoami",
+                      "cluster": "whoami",
                       "timeout_ms": 0
                     }
                   ]
@@ -55,12 +50,12 @@
           {"url": "tcp://google.com:80"}
         ]
       }, {
-        "name": "goservice",
+        "name": "whoami",
         "type": "strict_dns",
         "connect_timeout_ms": 250,
         "lb_type": "round_robin",
         "hosts": [
-          {"url": "tcp://goservice:80"}
+          {"url": "tcp://dummyapp:9010"}
         ]
       }
     ]

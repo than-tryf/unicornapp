@@ -2,16 +2,15 @@ FROM unicornbase/java-enabled
 
 MAINTAINER Thanasis Tryfonos <thanasistryfonos@gmail.com>
 
-# Oracle Java 8 Installation
 RUN apt-get -y update \
  && apt-get -y install software-properties-common
 
 RUN apt-get install -y curl && apt-get install -y htop
 
 
-ENV CATASCOPIA_APP_ID "hello_world"
+ENV CATASCOPIA_APP_ID "HEllo_world"
 ADD dummy-unicorn-app/target/dummy-unicorn-app-0.0.1-SNAPSHOT.jar /home/dummy-unicorn-app-0.0.1-SNAPSHOT.jar
-ADD containerization/dummy-app-starter.sh /home/dummy-app-starter.sh
+ADD containerization/dummyapp/dummy-app-starter.sh /home/dummy-app-starter.sh
 
 RUN chmod +x /home/dummy-app-starter.sh
 
