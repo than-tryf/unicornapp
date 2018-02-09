@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dummy-unicorn-app</module>
+
     </modules>
 
 </project>

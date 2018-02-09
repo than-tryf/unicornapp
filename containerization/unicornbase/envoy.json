@@ -18,6 +18,11 @@
                       "prefix": "/whoami",
                       "cluster": "whoami",
                       "timeout_ms": 0
+                    },
+                    {
+                      "prefix": "/getmyip",
+                      "cluster": "whoami",
+                      "timeout_ms": 0
                     }
                   ]
                 }

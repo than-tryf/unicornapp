@@ -10,6 +10,7 @@ mvn clean install
 ##################################################
 # kill and delete ALL running containers - USE WITH CAUTION
 docker stop $(docker ps -a -q)
+
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 ##################################################
@@ -35,7 +36,7 @@ docker network create -d bridge unicornmesh
 # Run the container
 
 
-docker run -d --network=unicornmesh --net-alias=dummyapp --name=dummyapp unicornbase/dummyapp
+docker run -d --memory="4g" --cpus="2" --network=unicornmesh --net-alias=dummyapp --name=dummyapp unicornbase/dummyapp
 
 clear
 
