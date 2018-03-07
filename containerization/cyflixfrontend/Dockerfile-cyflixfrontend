@@ -1,0 +1,27 @@
+FROM envoyproxy/envoy:latest
+MAINTAINER Thanasis Tryfonos <thanasistryfonos@gmail.com>
+RUN apt-get update \
+ && apt-get -y install software-properties-common
+RUN apt-get install -y curl
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+COPY containerization/cyflixfrontend/envoy.json /etc/envoy.json
+
+COPY containerization/cyflixfrontend/startfrontend.sh /home/start.sh
+
+COPY containerization/probes/docker-memoryprobe-1.0-SNAPSHOT-jar-with-dependencies.jar /home/docker-memoryprobe-1.0.jar
+COPY containerization/probes/docker-cpuprobe-1.0-SNAPSHOT-jar-with-dependencies.jar /home/docker-cpuprobe-1.0.jar
+RUN chmod +x /home/start.sh
+
+COPY cyflixfrontend/target/cyflix-frontend-1.0-SNAPSHOT.jar /home/cyflix-frontend-1.0-SNAPSHOT.jar
+
+ENTRYPOINT ["/home/start.sh"]
+
+
+

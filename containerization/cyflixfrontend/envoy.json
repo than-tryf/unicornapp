@@ -1,0 +1,78 @@
+{
+  "static_resources": {
+    "listeners": [
+      {
+        "address": {
+          "socket_address": {
+            "address": "0.0.0.0",
+            "port_value": "8080"
+          }
+        },
+        "filter_chains": [
+          {
+            "filters": [
+              {
+                "name": "envoy.http_connection_manager",
+                "config": {
+                  "codec_type": "AUTO",
+                  "stat_prefix": "ingress_http",
+                  "route_config": {
+                    "name": "cyflixfrontend",
+                    "virtual_hosts": [
+                      {
+                        "name": "cyflixfrontend",
+                        "domains": ["*"],
+                        "routes": [
+                          {
+                            "match": {
+                              "prefix": "/home"
+                            },
+                            "route": {
+                              "cluster": "frontend"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "http_filters": [
+                    {
+                      "name": "envoy.router",
+                      "config": {}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+
+        ]
+      }
+    ],
+    "clusters": [
+      {
+        "name": "frontend",
+        "type": "LOGICAL_DNS",
+        "connect_timeout": "0.25s",
+        "lb_policy": "ROUND_ROBIN",
+        "hosts": [
+          {
+            "socket_address": {
+              "address": "127.0.0.1",
+              "port_value": "10001"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "admin": {
+    "access_log_path": "/dev/null",
+    "address": {
+      "socket_address": {
+        "address": "0.0.0.0",
+        "port_value": "9010"
+      }
+    }
+  }
+}

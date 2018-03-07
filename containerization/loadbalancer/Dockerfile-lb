@@ -1,0 +1,4 @@
+FROM envoyproxy/envoy:latest
+RUN apt-get update
+COPY containerization/loadbalancer/envoy.json /etc/envoy.json
+CMD /usr/local/bin/envoy -c /etc/envoy.json
