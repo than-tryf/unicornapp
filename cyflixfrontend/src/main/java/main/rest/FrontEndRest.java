@@ -28,9 +28,9 @@ public class FrontEndRest {
 class Task implements Runnable{
 
     public void run() {
-        for(long i=10; i<23524895708L; i++){
+        for(long i=10; i<230L; i++){
 
-            double x = Math.tan(Math.tan(Math.tan(Math.tan(Math.tan(i)))));
+            double x = Math.tan(Math.tan(Math.tan(i)));
 
         }
 

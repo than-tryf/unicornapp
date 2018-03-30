@@ -12,11 +12,12 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer
 
 COPY containerization/cyflixfrontend/envoy.json /etc/envoy.json
-
 COPY containerization/cyflixfrontend/startfrontend.sh /home/start.sh
 
 COPY containerization/probes/docker-memoryprobe-1.0-SNAPSHOT-jar-with-dependencies.jar /home/docker-memoryprobe-1.0.jar
 COPY containerization/probes/docker-cpuprobe-1.0-SNAPSHOT-jar-with-dependencies.jar /home/docker-cpuprobe-1.0.jar
+COPY containerization/probes/docker-netprobe-1.0-SNAPSHOT-jar-with-dependencies.jar /home/docker-netprobe-1.0.jar
+
 RUN chmod +x /home/start.sh
 
 COPY cyflixfrontend/target/cyflix-frontend-1.0-SNAPSHOT.jar /home/cyflix-frontend-1.0-SNAPSHOT.jar
